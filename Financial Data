@@ -1,0 +1,6 @@
+How to extract financial data from Yahoo Finance
+example for novartis:
+go to https://finance.yahoo.com/quote/NOVN.VX/history?period1=796860000&period2=1512946800&interval=1d&filter=history&frequency=1d
+select time period
+apply 
+download CSV
