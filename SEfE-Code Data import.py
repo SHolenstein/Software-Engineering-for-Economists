@@ -57,3 +57,28 @@ Jeb2.append(0)
 df2 = pd.DataFrame(Jeb2, index=range(623))
 df2.plot.hist(color = 'g', alpha = 0.5, bins=100)
 """
+￼#defining the markow chain function
+#------------------------------------------------------------------------------
+def MarkovChain(K, states):
+    numb_imput = len(K)-1
+    turn_out_matrix = [[0 for x in range(states)] for x in range(states)]
+    prob_matix = [[0 for x in range(states)] for x in range(states)]
+    row = [0, 0, 0, 0, 0, 0,]
+    t=0
+    while t<numb_input:
+        turn_out_matrix[K[t]][K[t+1]]+=1
+        t+=1
+    ￼#calculate the total of each row transitions
+    for i in range (0, 6):
+        for j in range (0, 6):
+            row[i]+=turn_out_natrix[i][j]
+    
+    #calculate the probability of every transition
+    for i in range (0, 6):
+        for j in range (0, 6):
+            row[i]+=turn_out_natrix[i][j]/float(row[i])
+    return np.matrix(prob_matrix)
+
+Promat = MarkovChain(Jeb2, 6)
+print (ProMat)
+#------------------------------------------------------------------------------
