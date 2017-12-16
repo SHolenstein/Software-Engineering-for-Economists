@@ -1,12 +1,16 @@
 # Software Engineering Project:
 # **********************************************************************
+# In the beginning of the code we should do an interactive part: For instance,
+# (1) Explain the procedure of Data import
+# (2) Explain What the code does
+# (3) ...
 # Basics and Packages Used
 import os
 import panda as pd
 import matplotlib.pyplot as plt
 import numpy as np
 cwd = os.getcwd()
-os.chdir() # Insert path later!!
+os.chdir(" ") # Insert path later!! # How are we going to do that? Is there an alternative approach?
 # Importing Data
 # -----------------------------------------------------------------------------
 file = 'DataFinal.xlsx'
@@ -59,7 +63,7 @@ df2.plot.hist(color = 'g', alpha = 0.5, bins=100)
 """
 ￼#defining the markow chain function
 #------------------------------------------------------------------------------
-def MarkovChain(K, states):
+def MarkovChain(K, states):     # function which couts the differnt states
     numb_imput = len(K)-1
     turn_out_matrix = [[0 for x in range(states)] for x in range(states)]
     prob_matix = [[0 for x in range(states)] for x in range(states)]
@@ -82,3 +86,24 @@ def MarkovChain(K, states):
 Promat = MarkovChain(Jeb2, 6)
 print (ProMat)
 #------------------------------------------------------------------------------
+# Functions that show the probabilities that the return changes from one extreme to the other extreme! 
+# We have to do functions, in order that we can call them later!
+# (1) FOR Prob[S_{t+1}= {5,4,3} | S_{t} = 1] AND Prob[S_{t+1}= {1,2,3} | S_{t} = 5]
+sum_s1 = 0
+for i in range(3,6):
+    sum_s1 = sum_s1 + ProMat[0, i]
+print(sum_s1)       # computes Prob[S_{t+1}= {5,4,3} | S_{t} = 1]
+sum_s5 = 0
+for i in range(0,3):
+    sum_s5 = sum_s5 + ProMat[5, i]
+print(sum_s5)       # computes Prob[S_{t+1}= {1,2,3} | S_{t} = 5]
+# (2) FOR Prob[S_{t+1}= {5,4,3} | S_{t} = 2] AND Prob[S_{t+1}= {1,2,3} | S_{t} = 4]
+sum_s2 = 0
+for i in range(3,6):
+    sum_s2 = sum_s2 + ProMat[1, i]
+print(sum_s2)   # Prob[S_{t+1}= {5,4,3} | S_{t} = 2]
+sum_s4 = 0
+for i in range(0,3):
+    sum_s4 = sum_s4 + ProMat[4, i]
+print(sum_s4)       # Prob[S_{t+1}= {1,2,3} | S_{t} = 4]
+
