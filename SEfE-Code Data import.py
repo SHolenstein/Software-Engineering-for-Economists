@@ -106,4 +106,35 @@ sum_s4 = 0
 for i in range(0,3):
     sum_s4 = sum_s4 + ProMat[4, i]
 print(sum_s4)       # Prob[S_{t+1}= {1,2,3} | S_{t} = 4]
-
+# do a function for that procedure!!! So that you can call it later on!
+TRX = []
+TRX2 = []
+for i in range(1,11):
+q1= np.percentile(Returns,i)
+q2= np.percentile(Returns,25)
+q3= np.percentile(Returns,50)
+q4= np.percentile(Returns,75)
+q5= np.percentile(Returns,(100-i))
+Jeb = [] # "Jeb" is going to be the state vector
+for j in range(0,len(Returns)):
+if Returns[j] > q5:
+Jeb.append(5)
+elif Returns[j] > q4:
+Jeb.append(4)
+elif Returns[j] > q3:
+Jeb.append(3)
+elif Returns[j] > q2:
+Jeb.append(2)
+elif Returns[j] > q1:
+Jeb.append(1)
+else:
+Jeb.append(0)
+F = MarkovChain(Jeb,6)
+l = 0
+for k in range(3,6):
+l = l + F[0,k]
+n = 0
+for r in range(0,3):
+n = n + F[5,r]
+TRX2.append(n)
+TRX.append(l)
