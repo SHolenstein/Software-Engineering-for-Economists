@@ -111,31 +111,55 @@ print(sum_s4)       # Prob[S_{t+1}= {1,2,3} | S_{t} = 4]
 TRX = []
 TRX2 = []
 for i in range(1,11):
-q1= np.percentile(Returns,i)
-q2= np.percentile(Returns,25)
-q3= np.percentile(Returns,50)
-q4= np.percentile(Returns,75)
-q5= np.percentile(Returns,(100-i))
-Jeb = [] # "Jeb" is going to be the state vector
-for j in range(0,len(Returns)):
-if Returns[j] > q5:
-Jeb.append(5)
-elif Returns[j] > q4:
-Jeb.append(4)
-elif Returns[j] > q3:
-Jeb.append(3)
-elif Returns[j] > q2:
-Jeb.append(2)
-elif Returns[j] > q1:
-Jeb.append(1)
-else:
-Jeb.append(0)
-F = MarkovChain(Jeb,6)
-l = 0
-for k in range(3,6):
-l = l + F[0,k]
-n = 0
-for r in range(0,3):
-n = n + F[5,r]
-TRX2.append(n)
-TRX.append(l)
+    q1= np.percentile(Returns,i)
+    q2= np.percentile(Returns,25)
+    q3= np.percentile(Returns,50)
+    q4= np.percentile(Returns,75)
+    q5= np.percentile(Returns,(100-i))
+    Jeb = []                          # "Jeb" is going to be the state vector
+    for j in range(0,len(Returns)):
+        if Returns[j] > q5:
+            Jeb.append(5)
+        elif Returns[j] > q4:
+            Jeb.append(4)
+        elif Returns[j] > q3:
+            Jeb.append(3)
+        elif Returns[j] > q2:
+            Jeb.append(2)
+        elif Returns[j] > q1:
+            Jeb.append(1)
+        else:
+            Jeb.append(0)
+    F = MarkovChain(Jeb,6)
+    l = 0
+    for k in range(3,6):
+        l = l + F[0,k]
+    n = 0
+    for r in range(0,3):
+        n = n + F[5,r]
+    TRX2.append(n)
+    TRX.append(l)
+
+print('------- TRX -------')
+print(TRX)              # Prob[S_{t+1} = {5,4,3} | S_{t} = 1] for different
+                        # quantiles
+print('------ TRX2 -------')
+print(TRX2)             # Prob[S_{t+1} = {1,2,3} | S_{t} = 6] for different
+                        # quantiles
+zerofive = []
+for i in range(1,11):
+    zerofive.append(0.5)
+fig,ax = plt.subplots()
+quantiless = ax.plot(range(1,11), TRX, label='Prob[S_{t+1} in {6,5,4} | S_{t} = 1]',
+                     marker='o', color = 'g', alpha=0.8)
+quantiles = ax.plot(range(1,11), TRX2, label='Prob[S_{t+1} in {1,2,3} | S_{t} = 6]',
+                    marker='o', color = 'r', alpha=0.8)
+pointfive = ax.plot(range(1,11), zerofive, label='50% line', color='grey',alpha = 0.5)
+legend = ax.legend(loc='upper right')
+plt.xlabel('Quantiles in %')
+plt.ylabel('Probabilty')
+fig.savefig('Quantiles.jpg')
+fff = plt.show()  # indicates the probability that the returns in {t+1} are going to
+            # be in the oposite quantile, when t was in an extreme quantile
+
+
