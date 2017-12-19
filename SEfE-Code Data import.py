@@ -5,6 +5,7 @@
 # (2) Explain What the code does
 # (3) ...
 # Basics and Packages Used
+# -----------------------------------------------------------------------------
 import os
 import panda as pd
 import matplotlib.pyplot as plt
@@ -34,7 +35,7 @@ color='r')
 legend = ax.legend(loc='upper right')
 x= plt.show()
 """
-# Defining the Quantiles
+# Defining the Quantiles      --> Do this with a function!!!
 # -----------------------------------------------------------------------------
 q1 = np.percentile(Returns, 5)
 q2 = np.percentile(Returns, 25)
