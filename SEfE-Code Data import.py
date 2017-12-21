@@ -28,7 +28,7 @@ def Return_of_Asset(x):             # Return of Asset
         Returns.append((x[i+1]/x[i])-1)
     return Returns
 
-def Return_of_Matrix(x):            # Return of the Data-Matrix
+def Return_of_Matrix(x):            # Data Matrix Return
     Return_Matrix = []
     Return = []
     for i in range(0, len(x[1,:])):
