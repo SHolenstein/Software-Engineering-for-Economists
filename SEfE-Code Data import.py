@@ -18,8 +18,24 @@ file = 'DataFinal.xlsx'
 xl = pd.ExcelFile(file)
 df1 = xl.parse('DATA')
 data = df1.as_matrix(columns=None)
-#Computing Stock Returns
-# -----------------------------------------------------------------------------
+
+#------------------------------------------------------------------------------
+# Collection of Functions Used:
+#------------------------------------------------------------------------------
+def Return_of_Asset(x):             # Return of Asset
+    Returns = []
+    for i in range(0,len(x)-1):
+        Returns.append((x[i+1]/x[i])-1)
+    return Returns
+
+def Return_of_Matrix(x):            # Return of the Data-Matrix
+    Return_Matrix = []
+    Return = []
+    for i in range(0, len(x[1,:])):
+        Return_Matrix = np.c_[Return_of_Asset(x[:,i])]
+        Return.append(Return_Matrix)
+    return Return
+
 leng = len(data[:,2])
 Returns = []
 for i in range(1,leng-2):
