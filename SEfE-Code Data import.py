@@ -78,12 +78,7 @@ def State_Transformation(x, quant1):    # This function does transform the finan
             Jeb.append(0)
     return Jeb
 
-leng = len(data[:,2])
-Returns = []
-for i in range(1,leng-2):
-Returns.append(( data[i+1,7]/data[i,7] )-1 )
-# plotting the returns
-R_mean = [np.mean(Returns)]*len(Returns) # creating vector with mean
+
 """
 fig,ax = plt.subplots()
 data_line = ax.plot(len(Returns), Returns, label='Returns', marker='x',
