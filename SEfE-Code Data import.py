@@ -36,12 +36,49 @@ def Return_of_Matrix(x):            # Data Matrix Return
         Return.append(Return_Matrix)
     return Return
 
-leng = len(data[:,2])
-Returns = []
-for i in range(1,leng-2):
-Returns.append(( data[i+1,7]/data[i,7] )-1 )
-# plotting the returns
-R_mean = [np.mean(Returns)]*len(Returns) # creating vector with mean
+
+def MarkovChain(K, states):         # Markov Chain
+    numb_inputs = len(K)-1
+    turn_out_matrix = [[0 for x in range(states)] for x in range(states)]
+    prob_matrix = [[0 for x in range(states)] for x in range(states)]
+    row = [0, 0, 0, 0, 0, 0]
+    t=0
+    while t<numb_inputs:
+        turn_out_matrix[K[t]][K[t+1]]+=1
+        t+=1
+
+    for i in range(0, 6):           # calculate the total of each row transistions
+        for j in range(0, 6):
+            row[i]+=turn_out_matrix[i][j]
+
+    for i in range(0, 6):           # calculate the probability of every transition
+        for j in range(0, 6):
+            prob_matrix[i][j] = turn_out_matrix[i][j]/float(row[i])
+    return np.matrix(prob_matrix)
+
+def State_Transformation(x, quant1):    # This function does transform the financial data into the state vector.
+    q1= np.percentile(x,quant1)         # this is later used for the markov chain
+    q2= np.percentile(x,25)
+    q3= np.percentile(x,50)
+    q4= np.percentile(x,75)
+    q5= np.percentile(x,100-quant1)
+    Jeb = []                          
+    for j in range(0,len(x)):
+        if x[j] > q5:
+            Jeb.append(5)
+        elif x[j] > q4:
+            Jeb.append(4)
+        elif x[j] > q3:
+            Jeb.append(3)
+        elif x[j] > q2:
+            Jeb.append(2)
+        elif x[j] > q1:
+            Jeb.append(1)
+        else:
+            Jeb.append(0)
+    return Jeb
+
+
 """
 fig,ax = plt.subplots()
 data_line = ax.plot(len(Returns), Returns, label='Returns', marker='x',
