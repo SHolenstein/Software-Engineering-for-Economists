@@ -78,44 +78,53 @@ def State_Transformation(x, quant1):    # This function does transform the finan
             Jeb.append(0)
     return Jeb
 
+def Prob_High_S_Tplus1(D, inp):     # Prob[S_{t+1} in {6,5,4} | S_{t} = 1]
+    K = Return_of_Matrix(D)
+    x = K[inp]
+    TRX = []
+    for i in range(1,11):
+        Jeb = State_Transformation(x,i)
+        F = MarkovChain(Jeb,6)
+        l = 0
+        for k in range(3,6):
+            l = l + F[0,k]
+        TRX.append(l)
+    return TRX
 
-"""
-fig,ax = plt.subplots()
-data_line = ax.plot(len(Returns), Returns, label='Returns', marker='x',
-color = 'g',alpha=0.5)
-mean_line = ax.plot(len(Returns), R_mean,label='Mean', linestyle='--',
-color='r')
-legend = ax.legend(loc='upper right')
-x= plt.show()
-"""
-# Defining the Quantiles      --> Do this with a function!!!
-# -----------------------------------------------------------------------------
-q1 = np.percentile(Returns, 5)
-q2 = np.percentile(Returns, 25)
-q3 = np.percentile(Returns, 50)
-q4 = np.percentile(Returns, 75)
-q5 = np.percentile(Returns, 95)
-# Quantile to State Transformation
-Jeb2 = []
-for j in range(0,len(Returns)):
-if Returns[j] > q5:
-Jeb2.append(5)
-elif Returns[j] > q4:
-Jeb2.append(4)
-elif Returns[j] > q3:
-Jeb2.append(3)
-elif Returns[j] > q2:
-  Jeb2.append(2)
-elif Returns[j] > q1:
-Jeb2.append(1)
-else:
-Jeb2.append(0)
-# Plotting the quantile distribution
-"""
-df2 = pd.DataFrame(Jeb2, index=range(623))
-df2.plot.hist(color = 'g', alpha = 0.5, bins=100)
-"""
-￼#defining the markow chain function
+def Prob_Low_S_Tplus1(D, inp):      # Prob[S_{t+1} in {1,2,3} | S_{t} = 6]
+    K = Return_of_Matrix(D)
+    x = K[inp]
+    TRX = []
+    for i in range(1,11):
+        Jeb = State_Transformation(x,i)
+        F = MarkovChain(Jeb,6)
+        n = 0
+        for r in range(0,3):
+            n = n + F[5,r]
+        TRX.append(n)
+    return TRX
+
+def Crit_Title_Low(x):                          # Critical State for "LOW"?
+    K = Return_of_Matrix(x)
+    Low = []
+    for i in range(0,len(data[1,:])):
+        if K[i][-1] < np.nanpercentile(K, 5):   # quantile has to be defined here
+            Low.append(1)
+        else:
+            Low.append(0)
+    return Low
+
+def Crit_Title_High(x):              # Is there a critical state "High" 
+    K = Return_of_Matrix(x)
+    High = []
+    for i in range(0,len(data[1,:])):
+        if K[i][-1] > np.nanpercentile(K, 90):  # quantile has to be definded
+            High.append(1)
+        else:
+            High.append(0)
+return High
+
+
 #------------------------------------------------------------------------------
 def MarkovChain(K, states):     # function which couts the differnt states
     numb_imput = len(K)-1
