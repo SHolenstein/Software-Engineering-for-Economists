@@ -125,30 +125,9 @@ def Crit_Title_High(x):              # Is there a critical state "High"
 return High
 
 
-#------------------------------------------------------------------------------
-def MarkovChain(K, states):     # function which couts the differnt states
-    numb_imput = len(K)-1
-    turn_out_matrix = [[0 for x in range(states)] for x in range(states)]
-    prob_matix = [[0 for x in range(states)] for x in range(states)]
-    row = [0, 0, 0, 0, 0, 0,]
-    t=0
-    while t<numb_input:
-        turn_out_matrix[K[t]][K[t+1]]+=1
-        t+=1
-    ￼#calculate the total of each row transitions
-    for i in range (0, 6):
-        for j in range (0, 6):
-            row[i]+=turn_out_natrix[i][j]
-    
-    #calculate the probability of every transition
-    for i in range (0, 6):
-        for j in range (0, 6):
-            row[i]+=turn_out_natrix[i][j]/float(row[i])
-    return np.matrix(prob_matrix)
+# These fuction is already stated above!
 
-Promat = MarkovChain(Jeb2, 6)
-print (ProMat)
-#------------------------------------------------------------------------------
+
 # Functions that show the probabilities that the return changes from one extreme to the other extreme! 
 # We have to do functions, in order that we can call them later!
 # (1) FOR Prob[S_{t+1}= {5,4,3} | S_{t} = 1] AND Prob[S_{t+1}= {1,2,3} | S_{t} = 5]
