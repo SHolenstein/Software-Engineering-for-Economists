@@ -125,8 +125,25 @@ def Crit_Title_High(x):              # Is there a critical state "High"
 return High
 
 
-# These fuction is already stated above!
 
+# the Graph function visualizes the Tradings strategy. It  calls almost all of the above functions. That is:
+    # Prob_High... (inlk. State_Transformation, Return_of_Matrix, Markov_Chain)
+    # Prob_Low... (inkl. State_Transformation, Return_of_Matrix, Markov_Chain)
+def Graph(D, inp):
+    zerofive = []
+    for i in range(1,11):
+        zerofive.append(0.5)
+    fig,ax = plt.subplots()
+    ax.plot(range(1,11), Prob_High_S_Tplus1(D, inp), label='Prob[S_{t+1} in {6,5,4} | S_{t} = 1]',
+                         marker='o', color = 'g', alpha=0.8)
+    ax.plot(range(1,11), Prob_Low_S_Tplus1(D, inp), label='Prob[S_{t+1} in {1,2,3} | S_{t} = 6]',
+                        marker='o', color = 'r', alpha=0.8)
+    ax.plot(range(1,11), zerofive, label='50% Probability', color='grey',alpha = 0.5)
+    ax.legend(loc='upper right')
+    plt.xlabel('Quantiles in %')
+    plt.ylabel('Probabilty')
+    fff = plt.show()
+    return fff
 
 # Functions that show the probabilities that the return changes from one extreme to the other extreme! 
 # We have to do functions, in order that we can call them later!
