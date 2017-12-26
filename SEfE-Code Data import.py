@@ -145,6 +145,26 @@ def Graph(D, inp):
     fff = plt.show()
     return fff
 
+def count_critical_statesH(x):      # How many critical States for "Low"?
+    sum = 0
+    CRIT = Crit_Title_High(x);
+    for i in range(0,len(data[1,:])):
+        if CRIT[i] == 1:
+            sum = sum + 1
+        else:
+            sum = sum
+    return sum
+
+def count_critical_statesL(x):      # How many critical States for "High"?
+    sum = 0
+    CRIT = Crit_Title_Low(x);
+    for i in range(0,len(data[1,:])):
+        if CRIT[i] == 1:
+            sum = sum + 1
+        else:
+            sum = sum
+    return sum
+
 # Functions that show the probabilities that the return changes from one extreme to the other extreme! 
 # We have to do functions, in order that we can call them later!
 # (1) FOR Prob[S_{t+1}= {5,4,3} | S_{t} = 1] AND Prob[S_{t+1}= {1,2,3} | S_{t} = 5]
