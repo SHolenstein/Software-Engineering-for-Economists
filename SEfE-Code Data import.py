@@ -145,65 +145,26 @@ def Graph(D, inp):
     fff = plt.show()
     return fff
 
-# Functions that show the probabilities that the return changes from one extreme to the other extreme! 
-# We have to do functions, in order that we can call them later!
-# (1) FOR Prob[S_{t+1}= {5,4,3} | S_{t} = 1] AND Prob[S_{t+1}= {1,2,3} | S_{t} = 5]
-sum_s1 = 0
-for i in range(3,6):
-    sum_s1 = sum_s1 + ProMat[0, i]
-print(sum_s1)       # computes Prob[S_{t+1}= {5,4,3} | S_{t} = 1]
-sum_s5 = 0
-for i in range(0,3):
-    sum_s5 = sum_s5 + ProMat[5, i]
-print(sum_s5)       # computes Prob[S_{t+1}= {1,2,3} | S_{t} = 5]
-# (2) FOR Prob[S_{t+1}= {5,4,3} | S_{t} = 2] AND Prob[S_{t+1}= {1,2,3} | S_{t} = 4]
-sum_s2 = 0
-for i in range(3,6):
-    sum_s2 = sum_s2 + ProMat[1, i]
-print(sum_s2)   # Prob[S_{t+1}= {5,4,3} | S_{t} = 2]
-sum_s4 = 0
-for i in range(0,3):
-    sum_s4 = sum_s4 + ProMat[4, i]
-print(sum_s4)       # Prob[S_{t+1}= {1,2,3} | S_{t} = 4]
-# do a function for that procedure!!! So that you can call it later on!
-TRX = []
-TRX2 = []
-for i in range(1,11):
-    q1= np.percentile(Returns,i)
-    q2= np.percentile(Returns,25)
-    q3= np.percentile(Returns,50)
-    q4= np.percentile(Returns,75)
-    q5= np.percentile(Returns,(100-i))
-    Jeb = []                          # "Jeb" is going to be the state vector
-    for j in range(0,len(Returns)):
-        if Returns[j] > q5:
-            Jeb.append(5)
-        elif Returns[j] > q4:
-            Jeb.append(4)
-        elif Returns[j] > q3:
-            Jeb.append(3)
-        elif Returns[j] > q2:
-            Jeb.append(2)
-        elif Returns[j] > q1:
-            Jeb.append(1)
+def count_critical_statesH(x):      # How many critical States for "Low"?
+    sum = 0
+    CRIT = Crit_Title_High(x);
+    for i in range(0,len(data[1,:])):
+        if CRIT[i] == 1:
+            sum = sum + 1
         else:
-            Jeb.append(0)
-    F = MarkovChain(Jeb,6)
-    l = 0
-    for k in range(3,6):
-        l = l + F[0,k]
-    n = 0
-    for r in range(0,3):
-        n = n + F[5,r]
-    TRX2.append(n)
-    TRX.append(l)
+            sum = sum
+    return sum
 
-print('------- TRX -------')
-print(TRX)              # Prob[S_{t+1} = {5,4,3} | S_{t} = 1] for different
-                        # quantiles
-print('------ TRX2 -------')
-print(TRX2)             # Prob[S_{t+1} = {1,2,3} | S_{t} = 6] for different
-                        # quantiles
+def count_critical_statesL(x):      # How many critical States for "High"?
+    sum = 0
+    CRIT = Crit_Title_Low(x);
+    for i in range(0,len(data[1,:])):
+        if CRIT[i] == 1:
+            sum = sum + 1
+        else:
+            sum = sum
+    return sum
+
 zerofive = []
 for i in range(1,11):
     zerofive.append(0.5)
