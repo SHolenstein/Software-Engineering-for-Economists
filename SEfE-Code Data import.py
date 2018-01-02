@@ -376,8 +376,20 @@ else:
         Q2 = input("\033[0;34;48mType: 'YES' or 'NO'                                 ")
         print("\033[3;32;33m___________________________________________________________________________")
     print("")
-
-
-
+    print("\033[0;37;48mHave you seen enough? We can offer you a market overview based on the titels\n"
+      "backed in the data. Please choose whether to proceed or not, by typing\n"
+      "'YES' or 'NO' (Note: If you type 'NO', the programme is finished) ")
+    question3 = input("\033[0;34;48mType 'YES' or 'NO':                          ")
+    if question3 == "YES":
+        print("\033[3;32;33m___________________________________________________________________________")
+        print("")
+        print("\033[0;37;48mThis part is aiming to detect assets which are currently in one of the \n"
+                    "critical states. That is, either in state one or state six. This section  \n"
+                    "should be seen as a trading advice, as it workes through the given data in \n"
+                    "order to scan for critical states.")
+        print("")
+        print(Trading_Advice(data))
+    else:
+        print("Code finished")
 
 #END
