@@ -165,20 +165,4 @@ def count_critical_statesL(x):      # How many critical States for "High"?
             sum = sum
     return sum
 
-zerofive = []
-for i in range(1,11):
-    zerofive.append(0.5)
-fig,ax = plt.subplots()
-quantiless = ax.plot(range(1,11), TRX, label='Prob[S_{t+1} in {6,5,4} | S_{t} = 1]',
-                     marker='o', color = 'g', alpha=0.8)
-quantiles = ax.plot(range(1,11), TRX2, label='Prob[S_{t+1} in {1,2,3} | S_{t} = 6]',
-                    marker='o', color = 'r', alpha=0.8)
-pointfive = ax.plot(range(1,11), zerofive, label='50% line', color='grey',alpha = 0.5)
-legend = ax.legend(loc='upper right')
-plt.xlabel('Quantiles in %')
-plt.ylabel('Probabilty')
-fig.savefig('Quantiles.jpg')
-fff = plt.show()  # indicates the probability that the returns in {t+1} are going to
-            # be in the oposite quantile, when t was in an extreme quantile
-
-
+#END
