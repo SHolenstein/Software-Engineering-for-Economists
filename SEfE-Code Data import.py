@@ -15,6 +15,12 @@ xl = pd.ExcelFile(file)
 df1 = xl.parse('DATA')
 data = df1.as_matrix(columns=None)
 
+# EXTRA: INFO on DATA
+df1 = xl.parse('DATA') 
+df2 = xl.parse('King')
+df3 = xl.parse('Weggli')
+df4 = xl.parse('Number3')
+
 #------------------------------------------------------------------------------
 # Collection of Functions Used:
 #------------------------------------------------------------------------------
@@ -163,11 +169,6 @@ def count_critical_statesL(x):      # How many critical States for "High"?
 
 
 #------------------------------------------------------------------------------
-file = 'DataFinal.xlsx'
-xl = pd.ExcelFile(file)
-df1 = xl.parse('DATA') 
-df2 = xl.parse('King')
-df3 = xl.parse('Weggli')
 
 # INTERACTIV PART
 # 
@@ -178,19 +179,204 @@ f1 = input("Which Asset Class Do You Want To Analyze? Type [1] for ...      ")
 if f1 == "Stocks":
     data = df1.as_matrix(columns=None)
     print(" Which stocks do you want to analyze? Type ....")
-    fStock1 = int(input("Type Number                    "   ))
+    fStock = int(input("Type Number                    "   ))
+    print("\033[3;32;33m___________________________________________________________________________")
+    print("")
+    print("\033[0;37;48mThe following matrix will show the state transformation probability. That\n"
+                "is the probability that it changes from state one today to another state\n"
+                "tomorrow. The matrix value [m][n] represents the probability that the state\n"
+                "changes from [m] today, to state [n] tomorrow")
+    question51 = input("\033[0;34;48mPress 'Enter' to proceed:                    " )
+    print("\033[3;32;33m___________________________________________________________________________")
+    print("\033[0;37;48m")
+    print(Historical_Prob(data,fStock, 5))        # Muss noch schön Visualisiert werden
+    print("")
+    print("In addition to that, a graph is generated which shows the probability for a\n"
+          "state transformation from one of the extreme states to the opposite 50 \n"
+          "percent quantile.")
+    question61 = input("\033[0;34;48mPress 'Enter' to proceed:                    " )
+    print("\033[3;32;33m___________________________________________________________________________")
+    print("")
+    print(Graph(data,fStock))
+    print("\033[3;32;33m___________________________________________________________________________")
+    print("")
+    print("\033[0;34;48mDo you want to proceed with another title?")
+    Q2 = input("\033[0;34;48mType: 'YES' or 'NO'                                 ")
+    while Q2 == "YES":
+        inin =  int(input("\033[0;34;48mAsset:                                                "))
+        print("\033[3;32;33m___________________________________________________________________________")
+        print("")
+        print("\033[0;37;48mThe following matrix will show the state transformation probability. That\n"
+             "is the probability that it changes from state one today to another state\n"
+             "tomorrow. The matrix value [m][n] represents the probability that the state\n"
+             "changes from [m] today, to state [n] tomorrow")
+        question10 = input("\033[0;34;48mPress 'Enter' to proceed:                    " )
+        print("\033[3;32;33m___________________________________________________________________________")
+        print("\033[0;37;48m")
+        print(Historical_Prob(data,inin, 5))
+        print("")
+        print("In addition to that, a graph is generated which shows the probability for a\n"
+            "state transformation from one of the extreme states to the opposite 50 \n"
+            "percent quantile.")
+        question11 = input("\033[0;34;48mPress 'Enter' to proceed:                    " )
+        print("\033[3;32;33m___________________________________________________________________________")
+        print("")
+        print(Graph(data,inin))
+        print("\033[0;34;48mDo you want to proceed with another asset?" )
+        Q2 = input("\033[0;34;48mType: 'YES' or 'NO'                                 ")
+        print("\033[3;32;33m___________________________________________________________________________")
+    print("")
 elif f1 == "Edelmetalle":
     data = df1.as_matrix(columns=None)
     print("Which Edelmetall" ) 
     fEdelmetalle = int(input("Type... " ))
+    print("\033[3;32;33m___________________________________________________________________________")
+    print("")
+    print("\033[0;37;48mThe following matrix will show the state transformation probability. That\n"
+                "is the probability that it changes from state one today to another state\n"
+                "tomorrow. The matrix value [m][n] represents the probability that the state\n"
+                "changes from [m] today, to state [n] tomorrow")
+    question51 = input("\033[0;34;48mPress 'Enter' to proceed:                    " )
+    print("\033[3;32;33m___________________________________________________________________________")
+    print("\033[0;37;48m")
+    print(Historical_Prob(data,fEdelmetalle, 5))        # Muss noch schön Visualisiert werden
+    print("")
+    print("In addition to that, a graph is generated which shows the probability for a\n"
+          "state transformation from one of the extreme states to the opposite 50 \n"
+          "percent quantile.")
+    question61 = input("\033[0;34;48mPress 'Enter' to proceed:                    " )
+    print("\033[3;32;33m___________________________________________________________________________")
+    print("")
+    print(Graph(data,fEdelmetalle))
+    print("\033[3;32;33m___________________________________________________________________________")
+    print("")
+    print("\033[0;34;48mDo you want to proceed with another title?")
+    Q2 = input("\033[0;34;48mType: 'YES' or 'NO'                                 ")
+    while Q2 == "YES":
+        inin =  int(input("\033[0;34;48mAsset:                                                "))
+        print("\033[3;32;33m___________________________________________________________________________")
+        print("")
+        print("\033[0;37;48mThe following matrix will show the state transformation probability. That\n"
+             "is the probability that it changes from state one today to another state\n"
+             "tomorrow. The matrix value [m][n] represents the probability that the state\n"
+             "changes from [m] today, to state [n] tomorrow")
+        question10 = input("\033[0;34;48mPress 'Enter' to proceed:                    " )
+        print("\033[3;32;33m___________________________________________________________________________")
+        print("\033[0;37;48m")
+        print(Historical_Prob(data,inin, 5))
+        print("")
+        print("In addition to that, a graph is generated which shows the probability for a\n"
+            "state transformation from one of the extreme states to the opposite 50 \n"
+            "percent quantile.")
+        question11 = input("\033[0;34;48mPress 'Enter' to proceed:                    " )
+        print("\033[3;32;33m___________________________________________________________________________")
+        print("")
+        print(Graph(data,inin))
+        print("\033[0;34;48mDo you want to proceed with another asset?" )
+        Q2 = input("\033[0;34;48mType: 'YES' or 'NO'                                 ")
+        print("\033[3;32;33m___________________________________________________________________________")
+    print("")
 elif f1 == "Indizes":
     data = df1.as_matrix(columns=None)
     print("Which index do you want to analyze")
-    findex1 = int(input("please type...    "))
+    findex = int(input("please type...    "))
+    print("\033[3;32;33m___________________________________________________________________________")
+    print("")
+    print("\033[0;37;48mThe following matrix will show the state transformation probability. That\n"
+                "is the probability that it changes from state one today to another state\n"
+                "tomorrow. The matrix value [m][n] represents the probability that the state\n"
+                "changes from [m] today, to state [n] tomorrow")
+    question51 = input("\033[0;34;48mPress 'Enter' to proceed:                    " )
+    print("\033[3;32;33m___________________________________________________________________________")
+    print("\033[0;37;48m")
+    print(Historical_Prob(data,findex, 5))        # Muss noch schön Visualisiert werden
+    print("")
+    print("In addition to that, a graph is generated which shows the probability for a\n"
+          "state transformation from one of the extreme states to the opposite 50 \n"
+          "percent quantile.")
+    question61 = input("\033[0;34;48mPress 'Enter' to proceed:                    " )
+    print("\033[3;32;33m___________________________________________________________________________")
+    print("")
+    print(Graph(data,findex))
+    print("\033[3;32;33m___________________________________________________________________________")
+    print("")
+    print("\033[0;34;48mDo you want to proceed with another title?")
+    Q2 = input("\033[0;34;48mType: 'YES' or 'NO'                                 ")
+    while Q2 == "YES":
+        inin =  int(input("\033[0;34;48mAsset:                                                "))
+        print("\033[3;32;33m___________________________________________________________________________")
+        print("")
+        print("\033[0;37;48mThe following matrix will show the state transformation probability. That\n"
+             "is the probability that it changes from state one today to another state\n"
+             "tomorrow. The matrix value [m][n] represents the probability that the state\n"
+             "changes from [m] today, to state [n] tomorrow")
+        question10 = input("\033[0;34;48mPress 'Enter' to proceed:                    " )
+        print("\033[3;32;33m___________________________________________________________________________")
+        print("\033[0;37;48m")
+        print(Historical_Prob(data,inin, 5))
+        print("")
+        print("In addition to that, a graph is generated which shows the probability for a\n"
+            "state transformation from one of the extreme states to the opposite 50 \n"
+            "percent quantile.")
+        question11 = input("\033[0;34;48mPress 'Enter' to proceed:                    " )
+        print("\033[3;32;33m___________________________________________________________________________")
+        print("")
+        print(Graph(data,inin))
+        print("\033[0;34;48mDo you want to proceed with another asset?" )
+        Q2 = input("\033[0;34;48mType: 'YES' or 'NO'                                 ")
+        print("\033[3;32;33m___________________________________________________________________________")
+    print("")
 else:
     data = df1.as_matrix(columns=None)
     print(" Which 'Edelmetall' Do you want to analyze?          ")
     fEdel = int(input("Type Number...."         ))
+    print("\033[3;32;33m___________________________________________________________________________")
+    print("")
+    print("\033[0;37;48mThe following matrix will show the state transformation probability. That\n"
+                "is the probability that it changes from state one today to another state\n"
+                "tomorrow. The matrix value [m][n] represents the probability that the state\n"
+                "changes from [m] today, to state [n] tomorrow")
+    question51 = input("\033[0;34;48mPress 'Enter' to proceed:                    " )
+    print("\033[3;32;33m___________________________________________________________________________")
+    print("\033[0;37;48m")
+    print(Historical_Prob(data,fEdel, 5))        # Muss noch schön Visualisiert werden
+    print("")
+    print("In addition to that, a graph is generated which shows the probability for a\n"
+          "state transformation from one of the extreme states to the opposite 50 \n"
+          "percent quantile.")
+    question61 = input("\033[0;34;48mPress 'Enter' to proceed:                    " )
+    print("\033[3;32;33m___________________________________________________________________________")
+    print("")
+    print(Graph(data,fEdel))
+    print("\033[3;32;33m___________________________________________________________________________")
+    print("")
+    print("\033[0;34;48mDo you want to proceed with another title?")
+    Q2 = input("\033[0;34;48mType: 'YES' or 'NO'                                 ")
+    while Q2 == "YES":
+        inin =  int(input("\033[0;34;48mAsset:                                                "))
+        print("\033[3;32;33m___________________________________________________________________________")
+        print("")
+        print("\033[0;37;48mThe following matrix will show the state transformation probability. That\n"
+             "is the probability that it changes from state one today to another state\n"
+             "tomorrow. The matrix value [m][n] represents the probability that the state\n"
+             "changes from [m] today, to state [n] tomorrow")
+        question10 = input("\033[0;34;48mPress 'Enter' to proceed:                    " )
+        print("\033[3;32;33m___________________________________________________________________________")
+        print("\033[0;37;48m")
+        print(Historical_Prob(data,inin, 5))
+        print("")
+        print("In addition to that, a graph is generated which shows the probability for a\n"
+            "state transformation from one of the extreme states to the opposite 50 \n"
+            "percent quantile.")
+        question11 = input("\033[0;34;48mPress 'Enter' to proceed:                    " )
+        print("\033[3;32;33m___________________________________________________________________________")
+        print("")
+        print(Graph(data,inin))
+        print("\033[0;34;48mDo you want to proceed with another asset?" )
+        Q2 = input("\033[0;34;48mType: 'YES' or 'NO'                                 ")
+        print("\033[3;32;33m___________________________________________________________________________")
+    print("")
+
 
 
 
