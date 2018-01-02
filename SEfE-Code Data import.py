@@ -12,14 +12,11 @@ os.chdir(" ") # Insert path later!! # How are we going to do that? Is there an a
 # -----------------------------------------------------------------------------
 file = 'DataFinal.xlsx'
 xl = pd.ExcelFile(file)
-df1 = xl.parse('DATA')
-data = df1.as_matrix(columns=None)
-
-# EXTRA: INFO on DATA
 df1 = xl.parse('DATA') 
 df2 = xl.parse('King')
 df3 = xl.parse('Weggli')
 df4 = xl.parse('Number3')
+data = df1.as_matrix(columns=None)
 
 #------------------------------------------------------------------------------
 # Collection of Functions Used:
