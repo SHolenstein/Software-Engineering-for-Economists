@@ -1,9 +1,5 @@
 # Software Engineering Project:
 # **********************************************************************
-# In the beginning of the code we should do an interactive part: For instance,
-# (1) Explain the procedure of Data import
-# (2) Explain What the code does
-# (3) ...
 # Basics and Packages Used
 # -----------------------------------------------------------------------------
 import os
