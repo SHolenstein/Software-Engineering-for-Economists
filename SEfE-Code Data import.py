@@ -161,4 +161,37 @@ def count_critical_statesL(x):      # How many critical States for "High"?
             sum = sum
     return sum
 
+
+#------------------------------------------------------------------------------
+file = 'DataFinal.xlsx'
+xl = pd.ExcelFile(file)
+df1 = xl.parse('DATA') 
+df2 = xl.parse('King')
+df3 = xl.parse('Weggli')
+
+# INTERACTIV PART
+# 
+print("Selection: Stocks Switzerland, Edelmetalle, Indices, ..."  )
+
+f1 = input("Which Asset Class Do You Want To Analyze? Type [1] for ...      ")
+
+if f1 == "Stocks":
+    data = df1.as_matrix(columns=None)
+    print(" Which stocks do you want to analyze? Type ....")
+    fStock1 = int(input("Type Number                    "   ))
+elif f1 == "Edelmetalle":
+    data = df1.as_matrix(columns=None)
+    print("Which Edelmetall" ) 
+    fEdelmetalle = int(input("Type... " ))
+elif f1 == "Indizes":
+    data = df1.as_matrix(columns=None)
+    print("Which index do you want to analyze")
+    findex1 = int(input("please type...    "))
+else:
+    data = df1.as_matrix(columns=None)
+    print(" Which 'Edelmetall' Do you want to analyze?          ")
+    fEdel = int(input("Type Number...."         ))
+
+
+
 #END
