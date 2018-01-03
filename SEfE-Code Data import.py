@@ -165,11 +165,37 @@ def count_critical_statesL(x):      # How many critical States for "High"?
     return sum
 
 
-#------------------------------------------------------------------------------
+# ******************************************************************************************************************************
+# INTERACTIVE SECTION
+    # the interaction section is here to give the reader a basic interface, which makes the analysis of the data
+    # more appealing. This section basically consits of input factors and outputs, given by the code.
+# ******************************************************************************************************************************
+# Introduction to the Code
+print("")
+print("\033[3;32;33m___________________________________________________________________________") # \033[3;32;33m = bordeaux rot
+print("***************************************************************************")
+print("___________________________________________________________________________")
+print("")
+print("                   Software Engineering for Economists  \n")
+print("___________________________________________________________________________")
+print("")
+print("\033[0;34;48m                       By Samuel, Ray, Sergio and Nick")                  # \033[0;34;48m = Blue
+print("")
+print("\033[0;37;48mThe purpose of this code is to find patterns in different assets classes, \n" # \033[0;37;48m = Grau
+      "such as stocks, commodities and currencies. The goal is to figure out whether \n"
+      "it is possible to predict investment patterns by using a Markov Chain\n"
+      "algorithm.\n"
+      "In addition, the code is also able to give some basic investment advice \n"
+      "and hence, can be seen as a very basic robo advisor")
+time.sleep(3)
+print("")
+question = input("\033[0;34;48mPress 'Enter' to proceed:                     " )
+print("")
+print("\033[3;32;33m___________________________________________________________________________")
+# ******************************************************************************************************************************
+# While loop
 
-# INTERACTIV PART
-# 
-fragefinal = input("\033[0;37;48mDo you want to start with the analysis: Type 'YES'               ") 
+fragefinal = "YES"
 while fragefinal == "YES":          # Loop in order to have an infinit interface
     print("")
     print("\033[0;37;48mPlease choose an asset class you want to analyse. The following \n"
@@ -188,7 +214,7 @@ while fragefinal == "YES":          # Loop in order to have an infinit interface
     print("\033[3;32;33m___________________________________________________________________________")
     print("")
     if f1 == "Daily":
-        data = df1.as_matrix(columns=None)
+        data = df1.as_matrix(columns=None)      # data is defined as in the first sheet of the file
         print("\033[0;37;48mWhich asset do you want to analyze? Please type '0' for SMI or '1' for S&P500.")
         print("\033[0;37;48mNumber has to be between 0 and ", len(data[0,:])-1)
         fStock = int(input("\033[0;34;48mType Number                             "   ))
@@ -201,7 +227,7 @@ while fragefinal == "YES":          # Loop in order to have an infinit interface
         question51 = input("\033[0;34;48mPress 'Enter' to proceed:                    " )
         print("\033[3;32;33m___________________________________________________________________________")
         print("\033[0;37;48m")
-        print(Historical_Prob(data,fStock, 5))        # Muss noch schön Visualisiert werden
+        print(Historical_Prob(data,fStock, 5))          # calling function Historical_Prob
         print("")
         print("In addition to that, a graph is generated which shows the probability for a\n"
               "state transformation from one of the extreme states to the opposite 50 \n"
@@ -210,12 +236,11 @@ while fragefinal == "YES":          # Loop in order to have an infinit interface
         print("\033[3;32;33m___________________________________________________________________________")
         print("")
         print(Graph(data,fStock))
-        print("\033[3;32;33m___________________________________________________________________________")
         print("")
-        print("\033[0;34;48mDo you want to proceed with another title in this asset class?")
+        print("\033[0;37;48mDo you want to proceed with another title in this asset class?")
         Q2 = input("\033[0;34;48mType: 'YES' or 'NO'                                 ")
         while Q2 == "YES":
-            inin =  int(input("\033[0;34;48mAsset:                                                "))
+            inin =  int(input("\033[0;34;48mAsset: (0 = SMI, 1 = S&P500)                    "))
             print("\033[3;32;33m___________________________________________________________________________")
             print("")
             print("\033[0;37;48mThe following matrix will show the state transformation probability. That\n"
@@ -234,13 +259,18 @@ while fragefinal == "YES":          # Loop in order to have an infinit interface
             print("\033[3;32;33m___________________________________________________________________________")
             print("")
             print(Graph(data,inin))
-            print("\033[0;34;48mDo you want to proceed with another asset in this asset class?" )
+            print("\033[0;37;48mDo you want to proceed with another title in this asset class?" )
             Q2 = input("\033[0;34;48mType: 'YES' or 'NO'                                 ")
+            if Q2 == "YES":
+                print("")
+            else:
+                print("\033[3;32;33m___________________________________________________________________________")
         print("")
-    elif f1 == "Edelmetalle":
-        data = df1.as_matrix(columns=None)
-        print("Which Edelmetall" ) 
-        fEdelmetalle = int(input("Type... " ))
+    elif f1 == "Weekly":
+        data = df2.as_matrix(columns=None)
+        print("\033[0;37;48mWhich asset do you want to analyze? Please type '0' for SMI or '1' for S&P500.")
+        print("\033[0;37;48mNumber has to be between 0 and ", len(data[0,:])-1)
+        fStock = int(input("\033[0;34;48mType Number                             "   ))
         print("\033[3;32;33m___________________________________________________________________________")
         print("")
         print("\033[0;37;48mThe following matrix will show the state transformation probability. That\n"
@@ -250,7 +280,7 @@ while fragefinal == "YES":          # Loop in order to have an infinit interface
         question51 = input("\033[0;34;48mPress 'Enter' to proceed:                    " )
         print("\033[3;32;33m___________________________________________________________________________")
         print("\033[0;37;48m")
-        print(Historical_Prob(data,fEdelmetalle, 5))        # Muss noch schön Visualisiert werden
+        print(Historical_Prob(data,fStock, 5))       
         print("")
         print("In addition to that, a graph is generated which shows the probability for a\n"
               "state transformation from one of the extreme states to the opposite 50 \n"
@@ -258,13 +288,12 @@ while fragefinal == "YES":          # Loop in order to have an infinit interface
         question61 = input("\033[0;34;48mPress 'Enter' to proceed:                    " )
         print("\033[3;32;33m___________________________________________________________________________")
         print("")
-        print(Graph(data,fEdelmetalle))
-        print("\033[3;32;33m___________________________________________________________________________")
+        print(Graph(data,fStock))
         print("")
-        print("\033[0;34;48mDo you want to proceed with another title?")
+        print("\033[0;37;48mDo you want to proceed with another title in this asset class?")
         Q2 = input("\033[0;34;48mType: 'YES' or 'NO'                                 ")
         while Q2 == "YES":
-            inin =  int(input("\033[0;34;48mAsset:                                                "))
+            inin =  int(input("\033[0;34;48mAsset: (0 = SMI, 1 = S&P500)                         "))
             print("\033[3;32;33m___________________________________________________________________________")
             print("")
             print("\033[0;37;48mThe following matrix will show the state transformation probability. That\n"
@@ -283,14 +312,18 @@ while fragefinal == "YES":          # Loop in order to have an infinit interface
             print("\033[3;32;33m___________________________________________________________________________")
             print("")
             print(Graph(data,inin))
-            print("\033[0;34;48mDo you want to proceed with another asset?" )
+            print("\033[0;37;48mDo you want to proceed with another title in this asset class?" )
             Q2 = input("\033[0;34;48mType: 'YES' or 'NO'                                 ")
-            print("\033[3;32;33m___________________________________________________________________________")
+            if Q2 == "YES":
+                print("")
+            else:
+                print("\033[3;32;33m___________________________________________________________________________")
         print("")
-    elif f1 == "Indizes":
-        data = df1.as_matrix(columns=None)
-        print("Which index do you want to analyze")
-        findex = int(input("please type...    "))
+    elif f1 == "Nobel":
+        data = df3.as_matrix(columns=None)
+        print("\033[0;37;48mWhich asset do you want to analyze? Please type '0' for Gold or '1' for Palladium.")
+        print("\033[0;37;48mNumber has to be between 0 and ", len(data[0,:])-1)
+        fStock = int(input("\033[0;34;48mType Number                             "   ))
         print("\033[3;32;33m___________________________________________________________________________")
         print("")
         print("\033[0;37;48mThe following matrix will show the state transformation probability. That\n"
@@ -300,7 +333,7 @@ while fragefinal == "YES":          # Loop in order to have an infinit interface
         question51 = input("\033[0;34;48mPress 'Enter' to proceed:                    " )
         print("\033[3;32;33m___________________________________________________________________________")
         print("\033[0;37;48m")
-        print(Historical_Prob(data,findex, 5))        # Muss noch schön Visualisiert werden
+        print(Historical_Prob(data,fStock, 5))       
         print("")
         print("In addition to that, a graph is generated which shows the probability for a\n"
               "state transformation from one of the extreme states to the opposite 50 \n"
@@ -308,13 +341,12 @@ while fragefinal == "YES":          # Loop in order to have an infinit interface
         question61 = input("\033[0;34;48mPress 'Enter' to proceed:                    " )
         print("\033[3;32;33m___________________________________________________________________________")
         print("")
-        print(Graph(data,findex))
-        print("\033[3;32;33m___________________________________________________________________________")
+        print(Graph(data,fStock))
         print("")
-        print("\033[0;34;48mDo you want to proceed with another title?")
+        print("\033[0;37;48mDo you want to proceed with another title in this asset class?")
         Q2 = input("\033[0;34;48mType: 'YES' or 'NO'                                 ")
         while Q2 == "YES":
-            inin =  int(input("\033[0;34;48mAsset:                                                "))
+            inin =  int(input("\033[0;34;48mAsset: (0 = Gold; 1 = Palladium)                     "))
             print("\033[3;32;33m___________________________________________________________________________")
             print("")
             print("\033[0;37;48mThe following matrix will show the state transformation probability. That\n"
@@ -333,14 +365,18 @@ while fragefinal == "YES":          # Loop in order to have an infinit interface
             print("\033[3;32;33m___________________________________________________________________________")
             print("")
             print(Graph(data,inin))
-            print("\033[0;34;48mDo you want to proceed with another asset?" )
+            print("\033[0;37;48mDo you want to proceed with another title in this asset class?" )
             Q2 = input("\033[0;34;48mType: 'YES' or 'NO'                                 ")
-            print("\033[3;32;33m___________________________________________________________________________")
+            if Q2 == "YES":
+                print("")
+            else:
+                print("\033[3;32;33m___________________________________________________________________________")
         print("")
     else:
-        data = df1.as_matrix(columns=None)
-        print(" Which 'Edelmetall' Do you want to analyze?          ")
-        fEdel = int(input("Type Number...."         ))
+        data = df4.as_matrix(columns=None)
+        print("\033[0;37;48mWhich asset do you want to analyze? Please type '0' for aluminium or '1' for copper.")
+        print("\033[0;37;48mNumber has to be between 0 and ", len(data[0,:])-1)
+        fStock = int(input("\033[0;34;48mType Number                             "   ))
         print("\033[3;32;33m___________________________________________________________________________")
         print("")
         print("\033[0;37;48mThe following matrix will show the state transformation probability. That\n"
@@ -350,7 +386,7 @@ while fragefinal == "YES":          # Loop in order to have an infinit interface
         question51 = input("\033[0;34;48mPress 'Enter' to proceed:                    " )
         print("\033[3;32;33m___________________________________________________________________________")
         print("\033[0;37;48m")
-        print(Historical_Prob(data,fEdel, 5))        # Muss noch schön Visualisiert werden
+        print(Historical_Prob(data,fStock, 5))       
         print("")
         print("In addition to that, a graph is generated which shows the probability for a\n"
               "state transformation from one of the extreme states to the opposite 50 \n"
@@ -358,13 +394,12 @@ while fragefinal == "YES":          # Loop in order to have an infinit interface
         question61 = input("\033[0;34;48mPress 'Enter' to proceed:                    " )
         print("\033[3;32;33m___________________________________________________________________________")
         print("")
-        print(Graph(data,fEdel))
-        print("\033[3;32;33m___________________________________________________________________________")
+        print(Graph(data,fStock))
         print("")
-        print("\033[0;34;48mDo you want to proceed with another title?")
+        print("\033[0;37;48mDo you want to proceed with another title in this asset class?")
         Q2 = input("\033[0;34;48mType: 'YES' or 'NO'                                 ")
         while Q2 == "YES":
-            inin =  int(input("\033[0;34;48mAsset:                                                "))
+            inin =  int(input("\033[0;34;48mAsset: (0 = alluminium; 1 = copper)                      "))
             print("\033[3;32;33m___________________________________________________________________________")
             print("")
             print("\033[0;37;48mThe following matrix will show the state transformation probability. That\n"
@@ -383,24 +418,17 @@ while fragefinal == "YES":          # Loop in order to have an infinit interface
             print("\033[3;32;33m___________________________________________________________________________")
             print("")
             print(Graph(data,inin))
-            print("\033[0;34;48mDo you want to proceed with another asset?" )
+            print("\033[0;37;48mDo you want to proceed with another title in this asset class?" )
             Q2 = input("\033[0;34;48mType: 'YES' or 'NO'                                 ")
-            print("\033[3;32;33m___________________________________________________________________________")
+            if Q2 == "YES":
+                print("")
+            else:
+                print("\033[3;32;33m___________________________________________________________________________")
         print("")
-        print("\033[0;37;48mHave you seen enough? We can offer you a market overview based on the titels\n"
-          "backed in the data. Please choose whether to proceed or not, by typing\n"
-          "'YES' or 'NO' (Note: If you type 'NO', the programme is finished) ")
-        question3 = input("\033[0;34;48mType 'YES' or 'NO':                          ")
-        if question3 == "YES":
-            print("\033[3;32;33m___________________________________________________________________________")
-            print("")
-            print("\033[0;37;48mThis part is aiming to detect assets which are currently in one of the \n"
-                        "critical states. That is, either in state one or state six. This section  \n"
-                        "should be seen as a trading advice, as it workes through the given data in \n"
-                        "order to scan for critical states.")
-            print("")
-            print(Trading_Advice(data))
-        else:
-            print("Code finished")
+    print("\033[0;37;48mDo you want to procced with another asset class?")
+    fragefinal = input("\033[0;34;48mType: 'YES' or 'NO'                                 ") # if 'NO' then the code is finished
+    print("\033[3;32;33m___________________________________________________________________________")
+print("\033[0;37;48mCode is finished")
 
+# A new interactive part has to be coded!
 #END
