@@ -164,5 +164,40 @@ def count_critical_statesL(x):      # How many critical States for "High"?
             sum = sum
     return sum
 
+
+# ******************************************************************************************************************************
+# INTERACTIVE SECTION
+    # the interaction section is here to give the reader a basic interface, which makes the analysis of the data
+    # more appealing. This section basically consits of input factors and outputs, given by the code.
+# ******************************************************************************************************************************
+# Introduction to the Code
+print("")
+print("\033[3;32;33m___________________________________________________________________________") # \033[3;32;33m = bordeaux rot
+print("***************************************************************************")
+print("___________________________________________________________________________")
+print("")
+print("                   Software Engineering for Economists  \n")
+print("___________________________________________________________________________")
+print("")
+print("\033[0;34;48m                       By Samuel, Ray, Sergio and Nick")                  # \033[0;34;48m = Blue
+print("")
+print("\033[0;37;48mThe purpose of this code is to find patterns in different assets classes, \n" # \033[0;37;48m = Grau
+      "such as stocks, commodities and currencies. The goal is to figure out whether \n"
+      "it is possible to predict investment patterns by using a Markov Chain\n"
+      "algorithm.\n"
+      "In addition, the code is also able to give some basic investment advice \n"
+      "and hence, can be seen as a very basic robo advisor")
+time.sleep(3)
+print("")
+question = input("\033[0;34;48mPress 'Enter' to proceed:                     " )
+print("")
+print("\033[3;32;33m___________________________________________________________________________")
+# ******************************************************************************************************************************
+# While loop
+
+fragefinal = "YES"
+while fragefinal == "YES":          # Loop in order to have an infinit interface
+    
+
 # A new interactive part has to be coded!
 #END
